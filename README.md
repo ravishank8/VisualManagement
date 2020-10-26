@@ -3,9 +3,9 @@ It is a tool to create VisualManagement Dashboards
 
 There are essentially three dashboards - 
 
-1- Velocity and Defects chart
-2- Defects Progress chart
-3- UAT sign-off/go-live readiness board
+-- Velocity and Defects chart
+-- Defects Progress chart
+-- UAT sign-off/go-live readiness board
 
 The URLs for this screen can we seen as Express routes in app.js.
 
