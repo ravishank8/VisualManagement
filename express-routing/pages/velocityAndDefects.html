@@ -1,0 +1,422 @@
+<html>
+<title>Delivery Metrics</title>
+
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>CSS LAYOUT</title>
+    <meta http-equiv="Refresh" content="300">
+    <style>
+        .wrapper {
+            display: grid;
+            grid-gap: 4px;
+            grid-template-columns: repeat(9, 1fr);
+            grid-template-rows: minmax(325px, max-content) minmax(325px, max-content) 4%;
+        }
+
+        .accountData {
+            display: grid;
+            grid-template-columns: 2fr 1fr 0.5fr;
+            grid-template-rows: 8% 84% 8%;
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
+
+        }
+
+        .cartData {
+            display: grid;
+            grid-template-columns: 2fr 1fr 0.5fr;
+            grid-template-rows: 8% 84% 8%;
+            grid-column-start: 4;
+            grid-column-end: 7;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        .homeData {
+            display: grid;
+            grid-template-columns: 2fr 1fr 0.5fr;
+            grid-template-rows: 8% 84% 8%;
+            grid-column-start: 7;
+            grid-column-end: 10;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        .plpData {
+            display: grid;
+            grid-template-columns: 2fr 1fr 0.5fr;
+            grid-template-rows: 8% 84% 8%;
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        .gymboreeData {
+            display: grid;
+            grid-template-columns: 2fr 1fr 0.5fr;
+            grid-template-rows: 8% 84% 8%;
+            grid-column-start: 4;
+            grid-column-end: 7;
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        .frameworkData {
+            display: grid;
+            grid-template-columns: 2fr 1fr 0.5fr;
+            grid-template-rows: 8% 84% 8%;
+            grid-column-start: 7;
+            grid-column-end: 10;
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        .footer {
+            display: grid;
+            grid-gap: 4px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-start: 1;
+            grid-column-end: 10;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+
+        .redFooter {
+            padding: 2px;
+            background-color: red;
+            text-align: center;
+        }
+
+        .yellowFooter {
+            padding: 2px;
+            background-color: yellow;
+            text-align: center;
+        }
+
+        .greenFooter {
+            padding: 2px;
+            background-color: green;
+            text-align: center;
+        }
+
+        .redFooterInner {
+            background-color: antiquewhite;
+            padding-top: 4px;
+            color: red;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .yellowFooterInner {
+            background-color: antiquewhite;
+            padding-top: 4px;
+            color: rgba(19, 19, 1, 0.493);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+
+        .greenFooterInner {
+            background-color: antiquewhite;
+            padding-top: 4px;
+            color: green;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .podLabel {
+            grid-column: 1 / span 3;
+            text-align: center;
+            padding-top: 2px;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(to right, black, rgb(102, 100, 100));
+            font-size: 1.4em;
+            border-radius: 15px 0px 0px 0px;
+        }
+
+        .defectData {
+            padding-top: 105px;
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 3em;
+            color: red;
+            background-color: antiquewhite;
+        }
+
+        .statusData {
+            display: grid;
+            grid-gap: 4px;
+            grid-template-rows: 50% 50%;
+            text-align: center;
+        }
+
+        .velocityLabel {
+            padding-top: 3px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: rgb(247, 244, 240);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 0.85em;
+        }
+
+        .defectsLabel {
+            padding-top: 3px;
+            background-color: rgba(0, 0, 0, 0.65);
+            text-align: center;
+            color: antiquewhite;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 0.85em;
+        }
+
+        .statusLabel {
+            padding-top: 3px;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            color: antiquewhite;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 0.85em;
+        }
+
+        img {
+            height: 240px;
+            width: 270px;
+            position: relative;
+            align-content: center;
+        }
+
+        .green {
+            background-color: rgba(6, 158, 30, 0.8);
+            color: black;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 2.5em;
+            padding-top: 38px;
+        }
+
+        .yellow {
+            background-color: rgba(236, 214, 20, 0.8);
+            color: black;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 2.5em;
+            padding-top: 38px;
+        }
+
+        .red {
+            background-color: rgba(252, 64, 30, 0.8);
+            color: black;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 2.5em;
+            padding-top: 38px;
+        }
+
+        .velocityData {
+            display: grid;
+            grid-template-rows: 33% 33% 33%;
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .total{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 3em;
+            color:blue;
+        }
+
+        .expected{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 3em;
+            color:green;
+        }
+
+        .actual{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 3em;
+            color:red;
+        }
+
+        .total>span{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size:0.5em;
+        }
+
+        .expected>span{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size:0.5em;
+        }
+
+        .actual>span{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size:0.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div id="account" class="accountData">
+            <div id="accountLabel" class="podLabel">Account and Loyalty</div>
+            <div id="accountVelocity" class="velocityData">
+                <div class="total">22.56 <span>Total</span>
+                </div>
+                <div class="expected">12.20 <span>Expected </span>
+                </div>
+                <div class="actual">5.7 <span>Actual </span>
+                </div>
+                <!-- <img src="assets/velocitygraphs/Account and Loyalty.png" /> -->
+            </div>
+            <div id="accountDefectData" class="defectData">
+                20
+            </div>
+            <div id="accountStatus" class="statusData">
+                <div id="accountDefectStatus">
+                    D
+                </div>
+                <div id="accountStoryStatus">
+                    V
+                </div>
+            </div>
+            <div class="velocityLabel">Velocity</div>
+            <div class="defectsLabel">Defects</div>
+            <div class="statusLabel">Status</div>
+        </div>
+
+        <div id="cart" class="cartData">
+            <div id="cartLabel" class="podLabel">Cart and Checkout</div>
+            <div class="velocityData">
+                <img src="assets/velocitygraphs/Cart and Checkout.png" />
+
+            </div>
+            <div id="cartDefectData" class="defectData">
+                20
+            </div>
+            <div id="cartStatus" class="statusData">
+                <div id="cartDefectStatus">
+                    D
+                </div>
+                <div id="cartStoryStatus">
+                    V
+                </div>
+
+            </div>
+            <div class="velocityLabel">Velocity</div>
+            <div class="defectsLabel">Defects</div>
+            <div class="statusLabel">Status</div>
+        </div>
+
+        <div id="home" class="homeData">
+            <div id="homeLabel" class="podLabel">Home and Global Components</div>
+            <div class="velocityData">
+                <img src="assets/velocitygraphs/Homepage and Global Components.png" />
+
+            </div>
+            <div id="homeDefectData" class="defectData">
+                20
+            </div>
+            <div id="homeStatus" class="statusData">
+                <div id="homeDefectStatus">
+                    D
+                </div>
+                <div id="homeStoryStatus">
+                    V
+                </div>
+
+
+            </div>
+            <div class="velocityLabel">Velocity</div>
+            <div class="defectsLabel">Defects</div>
+            <div class="statusLabel">Status</div>
+        </div>
+
+        <div id="plp" class="plpData">
+            <div id="plpLabel" class="podLabel">PLP, PDP and Outfits</div>
+            <div class="velocityData">
+                <img src="assets/velocitygraphs/PLP,PDP and Outfit.png" />
+
+            </div>
+            <div id="plpDefectData" class="defectData">
+                20
+            </div>
+            <div id="plpStatus" class="statusData">
+                <div id="plpDefectStatus">
+                    D
+                </div>
+                <div id="plpStoryStatus">
+                    V
+                </div>
+
+
+            </div>
+            <div class="velocityLabel">Velocity</div>
+            <div class="defectsLabel">Defects</div>
+            <div class="statusLabel">Status</div>
+        </div>
+
+        <div id="gymboree" class="gymboreeData">
+            <div id="gymboreeLabel" class="podLabel">Gymboree Backend</div>
+            <div class="velocityData">
+                <img src="assets/velocitygraphs/Gymboree backend.png" />
+
+            </div>
+            <div id="gymboreeDefectData" class="defectData">
+                20
+            </div>
+            <div id="gymboreeStatus" class="statusData">
+                <div id="gymboreeDefectStatus">
+                    D
+                </div>
+                <div id="gymboreeStoryStatus">
+                    V
+                </div>
+
+            </div>
+            <div class="velocityLabel">Velocity</div>
+            <div class="defectsLabel">Defects</div>
+            <div class="statusLabel">Status</div>
+        </div>
+
+        <div id="framework" class="frameworkData">
+            <div id="frameworkLabel" class="podLabel">Framework and General</div>
+            <div class="velocityData">
+                <img src="assets/velocitygraphs/Framework.png" />
+
+            </div>
+            <div id="frameworkDefectData" class="defectData">
+                20
+            </div>
+            <div id="frameworkStatus" class="statusData">
+                <div id="frameworkDefectStatus">
+                    D
+                </div>
+                <div id="frameworkStoryStatus">
+                    V
+                </div>
+
+            </div>
+            <div class="velocityLabel">Velocity</div>
+            <div class="defectsLabel">Defects</div>
+            <div class="statusLabel">Status</div>
+        </div>
+
+        <div id="footerData" class="footer">
+            <div class="redFooter">
+                <div class="redFooterInner">Velocity < 75% / Defects:> 65</div>
+            </div>
+            <div class="yellowFooter">
+                <div class="yellowFooterInner">Velocity:75% - 85% / Defects: 40 - 65</div>
+            </div>
+            <div class="greenFooter">
+                <div class="greenFooterInner">Velocity > 85% / Defects: < 40</div> </div> </div> </div> </body> <script
+                        src="scripts/getSprintDataAbout.js" defer>
+                        </script>
+
+</html>
+
+<script>
+    function change_page() {
+        console.log("change_page");
+        //    location.replace("sitemap");
+    }
+
+    setInterval(change_page, 10000);
+</script>

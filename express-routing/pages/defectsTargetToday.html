@@ -1,0 +1,303 @@
+<html>
+<title>Delivery Metrics</title>
+
+<head>
+    <title>CSS LAYOUT</title>
+    <meta http-equiv="Refresh" content="300">
+    <style>
+        .wrapper {
+            display: grid;
+            grid-gap: 4px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 70px 320px 320px 20px;
+        }
+
+        .accountData {
+            grid-template-rows: 15% 85%;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        .cartData {
+            grid-template-rows: 15% 85%;
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        .homeData {
+            grid-template-rows: 15% 85%;
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        .plpData {
+            grid-template-rows: 15% 85%;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+
+        .gymboreeData {
+            grid-template-rows: 15% 85%;
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+
+        .frameworkData {
+            grid-template-rows: 15% 85%;
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+
+       .podLabel {
+           /* grid-column: 1 / span 3;*/
+            text-align: center;
+            padding-top: 2px;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(to right, black, rgb(102, 100, 100));
+            font-size: 1.1em;
+            border-radius: 25px 0px 0px 0px;
+        }
+
+        .defectData{
+            display:grid;
+            border-radius: 20px 20px 20px 20px;
+            grid-template-columns: repeat(6, 16%);
+            grid-gap: 2px;
+            background-color: rgb(245, 231, 231);
+        }
+
+
+        .green {
+            padding:4px;
+            background-color: rgba(6, 158, 30, 0.8);
+            border-radius:5px 5px 5px 5px;
+            color:white;
+            font-size:1.2em;
+        }
+
+        .yellow {
+            padding:4px;
+            background-color: rgba(236, 214, 20, 0.8);
+            border-radius:5px 5px 5px 5px;
+            color:black;
+            font-size:1.2em;
+        }
+
+        .red {
+            padding:4px;
+            background-color: rgba(252, 64, 30, 0.8);
+            border-radius:5px 5px 5px 5px;
+            color:black;
+            font-size:1.2em;
+
+        }
+
+        .greenRanked {
+            padding:4px;
+            background-color: rgba(6, 158, 30, 0.8);
+            border-radius:5px 5px 5px 5px;
+            background-image:url('http://localhost:3000/assets/images/icon.png');
+            background-repeat: no-repeat;
+            background-position: top right;
+            background-size:10px;
+            color:white;
+            font-size:1.2em;
+        }
+
+        .yellowRanked {
+            padding:4px;
+            background-color:rgba(236, 214, 20, 0.8);
+			border-radius:5px 5px 5px 5px;
+            background-image:url('http://localhost:3000/assets/images/icon.png');
+            background-repeat: no-repeat;
+            background-size:10px;
+            background-position: top right;
+            color:black;
+            font-size:1.2em;
+        }
+
+        .redRanked {
+            padding:4px;
+            background-color: rgba(252, 64, 30, 0.8);
+            border-radius:5px 5px 5px 5px;
+            background-image:url('http://localhost:3000/assets/images/icon.png');
+            background-repeat: no-repeat;
+            background-position: top right;
+            background-size:10px;
+            color:black;
+            font-size:1.2em;
+
+        }
+
+        .header{
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            font-size: 3.5em;
+            text-align: center;
+            padding-left: 50px;
+            background-image:linear-gradient(to right, black, rgb(228, 215, 215));
+            color:whitesmoke;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border-radius:10px 10px 10px 10px;
+        }
+
+        .ranked{
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            font-color:white;
+            font-size:1.5em;
+            text-align: right;
+            padding-right:25px;
+            background-image:url('http://localhost:3000/assets/images/icon.png');            
+            background-repeat: no-repeat;
+            background-position: top right;
+            background-size:20px;
+            
+            position: relative;
+        }
+
+        .footer {
+            display: grid;
+            grid-gap: 4px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 4;
+            grid-row-end: 5;
+        }
+
+        .redFooter {
+            padding: 2px;
+            background-color: red;
+            text-align: center;
+        }
+
+        .yellowFooter {
+            padding: 2px;
+            background-color: yellow;
+            text-align: center;
+        }
+
+        .greenFooter {
+            padding: 2px;
+            background-color: green;
+            text-align: center;
+        }
+
+        .redFooterInner {
+            background-color: antiquewhite;
+            padding-top: 4px;
+            color: red;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .yellowFooterInner {
+            background-color: antiquewhite;
+            padding-top: 4px;
+            color: rgba(19, 19, 1, 0.493);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+
+        .greenFooterInner {
+            background-color: antiquewhite;
+            padding-top: 4px;
+            color: green;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+     </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="defectsHeader" class="header">
+            DEFECTS ASSIGNED TODAY 
+        </div>
+        <div class="ranked">Ranked Defects</div>
+        
+        <div id="account" class="accountData">
+            <div id="accountLabel" class="podLabel">Account and Loyalty</div>
+            <div id="accountDefectData" class="defectData">
+               
+            </div>
+        </div>
+
+        <div id="cart" class="cartData">
+            <div id="cartLabel" class="podLabel">Cart and Checkout</div>
+
+            <div id="cartDefectData" class="defectData">
+               
+            </div>
+        </div>
+
+        <div id="home" class="homeData">
+            <div id="homeLabel" class="podLabel">Homepage and Global Components</div>
+
+            <div id="homeDefectData" class="defectData">
+               
+            </div>
+        </div>
+
+        <div id="plp" class="plpData">
+            <div id="plpLabel" class="podLabel">PLP, PDP and Outfits</div>
+
+            <div id="plpDefectData" class="defectData">
+               
+            </div>
+        </div>
+
+        <div id="gymboree" class="gymboreeData">
+            <div id="gymboreeLabel" class="podLabel">Gymboree Backend</div>
+
+            <div id="gymboreeDefectData" class="defectData">
+               
+            </div>
+        </div>
+
+        <div id="framework" class="frameworkData">
+            <div id="frameworkLabel" class="podLabel">Framework and General</div>
+
+            <div id="frameworkData" class="defectData">
+               
+            </div>
+        </div>
+      <!--  <div id="footerData" class="footer">
+            <div class="redFooter">
+                <div class="redFooterInner">IN DEV, OPEN, BLOCKED</div>
+            </div>
+            <div class="yellowFooter">
+                <div class="yellowFooterInner">DEV COMPLETE</div>
+            </div>
+            <div class="greenFooter">
+                <div class="greenFooterInner">READY FOR TESTING, IN TEST, CLOSED</div> 
+            </div> 
+        </div> -->
+    </div>
+    <script src="scripts/getTodayDefectData.js" defer></script>
+</body>
+</html>
+<script>
+function change_page(){
+    console.log("change_page");
+//    location.replace("about");
+} 
+setInterval(change_page, 10000);
+</script>

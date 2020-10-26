@@ -1,0 +1,373 @@
+<html>
+<title>Delivery Metrics</title>
+
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>CSS LAYOUT</title>
+    <meta http-equiv="Refresh" content="300">
+    <style>
+        .wrapper {
+            display: grid;
+            grid-gap: 4px;
+            height: 100%;
+            grid-template-columns: repeat(7,1fr);
+            grid-template-rows: repeat(6,1fr); 
+         }
+
+         .labelData{
+            display:grid;
+            grid-row-start: 1;
+            grid-row-end: 6;
+            grid-column-start:1;
+            grid-column-end:2;
+            font-size:1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ 
+         }
+
+         #accountStatusData{
+            display:grid;
+            grid-row-start: 1;
+            grid-row-end: 6;
+            grid-column-start:2;
+            grid-column-end:3;
+            font-size:1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
+
+         #cartStatusData{
+            display:grid;
+            grid-row-start: 1;
+            grid-row-end: 6;
+            grid-column-start:3;
+            grid-column-end:4;
+            font-size:1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
+
+         #homeStatusData{
+            display:grid;
+            grid-row-start: 1;
+            grid-row-end: 6;
+            grid-column-start:4;
+            grid-column-end:5;
+            font-size:1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
+
+         #plpStatusData{
+            display:grid;
+            grid-row-start: 1;
+            grid-row-end: 6;
+            grid-column-start:5;
+            grid-column-end:6;
+            font-size:1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
+
+         #gymboreeStatusData{
+            display:grid;
+            grid-row-start: 1;
+            grid-row-end: 6;
+            grid-column-start:6;
+            grid-column-end:7;
+            font-size:1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
+
+         #nfrStatusData{
+            display:grid;
+            grid-row-start: 1;
+            grid-row-end: 6;
+            grid-column-start:7;
+            grid-column-end:8;
+            font-size:1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
+
+         .statusData{
+             display:grid;
+             grid-template-rows:repeat(6, 1fr);
+             grid-template-columns:repeat(2,1fr);
+         }
+
+         .statusData > .podLabel{
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:1;
+            grid-column-end:3;
+         }
+         .statusData > .statusLabel{
+            grid-row-start:2;
+            grid-row-end:3;
+            grid-column-start:1;
+            grid-column-end:3;
+         }
+
+         .statusData > .currentDefects{
+            display:grid;
+            grid-row-start:3;
+            grid-row-end:4;
+            grid-column-start:1;
+            grid-column-end:3;
+         }
+
+         .statusData > .currentDefects > .defectsOverall {
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:1;
+            grid-column-end:2;
+         }
+
+         .statusData > .currentDefects > .defectsCritical {
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:2;
+            grid-column-end:3;
+         }
+
+         .statusData > .assignedDefects{
+            display:grid;
+            grid-row-start:4;
+            grid-row-end:5;
+            grid-column-start:1;
+            grid-column-end:3;
+         }
+
+         .statusData > .assignedDefects > .defectsOverall {
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:1;
+            grid-column-end:2;
+         }
+
+         .statusData > .assignedDefects > .defectsCritical {
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:2;
+            grid-column-end:3;
+         }
+
+         .statusData > .projectedDefects{
+            display:grid;
+            grid-row-start:5;
+            grid-row-end:6;
+            grid-column-start:1;
+            grid-column-end:3;
+         }
+
+         .statusData > .projectedDefects > .defectsOverall {
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:1;
+            grid-column-end:2;
+         }
+
+         .statusData > .projectedDefects > .defectsCritical {
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:2;
+            grid-column-end:3;
+         }
+
+         .statusData > .targetDefects{
+            display:grid;
+            grid-row-start:6;
+            grid-row-end:7;
+            grid-column-start:1;
+            grid-column-end:3;
+         }
+
+         .statusData > .targetDefects > .defectsOverall {
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:1;
+            grid-column-end:2;
+         }
+
+         .statusData > .targetDefects > .defectsCritical {
+            grid-row-start:1;
+            grid-row-end:2;
+            grid-column-start:2;
+            grid-column-end:3;
+         }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="labels" class="labelData">
+            <div>RWD POD</div>
+            <div>STATUS</div>
+            <div>CURRENT</div>
+            <div>ASSIGNED</div>
+            <div>PROJECTED</div>
+            <div>TARGET</div>
+        </div>
+        <div id="accountStatusData" class="statusData">
+            <div class="podLabel">RWD POD</div>
+            <div class="statusLabel">STATUS
+                    <div class="defectLabel">
+                            <div id ="accountDefectsOverall" class="defectsOverall">OVERALL</div>
+                            <div id = "accountDefectsCritical" class="defectsCritical">P1-P2</div>
+                        </div>
+            </div>
+            
+            <div class="currentDefects">
+                <div id ="accountCurrentDefectsOverall" class="defectsOverall">10</div>
+                <div id = "accountCurrentDefectsCritical" class="defectsCritical">10</div>
+            </div>
+            <div class="assignedDefects">
+                <div id ="accountAssignedDefectsOverall" class="defectsOverall">10</div>
+                <div id = "accountAssignedDefectsCritical" class="defectsCritical">10</div>
+            </div>
+            <div class="projectedDefects">
+                <div id ="accountProjectedDefectsOverall" class="defectsOverall">10</div>
+                <div id = "accountProjectedDefectsCritical" class="defectsCritical">10</div>
+            </div>
+            <div class="targetDefects">
+                <div id ="accountTargetDefectsOverall" class="defectsOverall">10</div>
+                <div id = "accountTargetDefectsCritical" class="defectsCritical">10</div>
+            </div>   
+        </div>
+
+        <div id="cartStatusData" class="statusData">
+                <div class="podLabel">RWD POD</div>
+                <div class="statusLabel">STATUS
+                        <div class="defectLabel">
+                                <div id ="cartDefectsOverall" class="defectsOverall">10</div>
+                                <div id = "cartDefectsCritical" class="defectsCritical">10</div>
+                            </div>
+                </div>
+               
+                <div class="currentDefects">
+                    <div id ="cartCurrentDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "cartCurrentDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="assignedDefects">
+                    <div id ="cartAssignedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "cartAssignedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="projectedDefects">
+                    <div id ="cartProjectedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "cartProjectedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="targetDefects">
+                    <div id ="cartTargetDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "cartTargetDefectsCritical" class="defectsCritical">10</div>
+                </div>     
+        </div>
+
+        <div id="homeStatusData" class="statusData">
+                <div class="podLabel">RWD POD</div>
+                <div class="statusLabel">STATUS
+                        <div class="defectLabel">
+                                <div id ="homeDefectsOverall" class="defectsOverall">10</div>
+                                <div id = "homeDefectsCritical" class="defectsCritical">10</div>
+                            </div>
+                </div>
+               
+                <div class="currentDefects">
+                    <div id ="homeCurrentDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "homeCurrentDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="assignedDefects">
+                    <div id ="homeAssignedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "homeAssignedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="projectedDefects">
+                    <div id ="homeProjectedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "homeProjectedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="targetDefects">
+                    <div id ="homeTargetDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "homeTargetDefectsCritical" class="defectsCritical">10</div>
+                </div>   
+        </div>
+
+        <div id="plpStatusData" class="statusData">
+                <div class="podLabel">RWD POD</div>
+                <div class="statusLabel">STATUS
+                        <div class="defectLabel">
+                                <div id ="plpDefectsOverall" class="defectsOverall">OVERALL</div>
+                                <div id = "plpDefectsCritical" class="defectsCritical">p1</div>
+                            </div>
+                </div>
+                
+                <div class="currentDefects">
+                    <div id ="plpCurrentDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "plpCurrentDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="assignedDefects">
+                    <div id ="plpAssignedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "plpAssignedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="projectedDefects">
+                    <div id ="plpProjectedDefectsOverall" class="defectsOverall"></div>
+                    <div id = "plpProjectedDefectsCritical" class="defectsCritical"></div>
+                </div>
+                <div class="targetDefects">
+                    <div id ="plpTargetDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "plpTargetDefectsCritical" class="defectsCritical">10</div>
+                </div>     
+        </div>
+
+        <div id="gymboreeStatusData" class="statusData">
+                <div class="podLabel">RWD POD</div>
+                <div class="statusLabel">STATUS
+                        <div class="defectLabel">
+                                <div id ="gymboreeDefectsOverall" class="defectsOverall">OVERALL</div>
+                                <div id = "gymboreeDefectsCritical" class="defectsCritical">p2p2</div>
+                            </div>
+                </div>
+                
+                <div class="currentDefects">
+                    <div id ="gymboreeCurrentDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "gymboreeCurrentDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="assignedDefects">
+                    <div id ="gymboreeAssignedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "gymboreeAssignedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="projectedDefects">
+                    <div id ="gymboreeProjectedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "gymboreeProjectedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="targetDefects">
+                    <div id ="gymboreeTargetDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "gymboreeTargetDefectsCritical" class="defectsCritical">10</div>
+                </div>       
+        </div>
+
+        <div id="nfrStatusData" class="statusData">
+                <div class="podLabel">RWD POD</div>
+                <div class="statusLabel">STATUS
+                    <div class="defectLabel">
+                            <div id ="nfrDefectsOverall" class="defectsOverall">overall</div>
+                            <div id = "nfrDefectsCritical" class="defectsCritical">P1-p2</div>
+                        </div>
+                    </div>
+               
+                <div class="currentDefects">
+                    <div id ="nfrCurrentDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "nfrCurrentDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="assignedDefects">
+                    <div id ="nfrAssignedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "nfrAssignedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="projectedDefects">
+                    <div id ="nfrProjectedDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "nfrProjectedDefectsCritical" class="defectsCritical">10</div>
+                </div>
+                <div class="targetDefects">
+                    <div id ="nfrTargetDefectsOverall" class="defectsOverall">10</div>
+                    <div id = "nfrTargetDefectsCritical" class="defectsCritical">10</div>
+                </div>   
+        </div>
+    </div>
+</body>
+<script src="scripts/getSprintData.js" defer></script>
+</html>
