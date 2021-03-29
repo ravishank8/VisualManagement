@@ -46,10 +46,12 @@ router.get('/defectsTargetToday',function(req,res){
   res.sendFile(path.join(__dirname+'/pages/defectsTargetToday.html'));
 });
 
+// Commented changes to the master branch
+
 //add the router
 app.use('/', router);
 app.listen(process.env.port || 3000);
 
-//This is the place to do calculations and derive results
+//This is the place to do calculations and derive appropriate results
 
 console.log('Running at Port 3000');
