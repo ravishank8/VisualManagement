@@ -24,3 +24,5 @@ Currently the way the code essentially works is as follows -
 2- The clients-side code feeds of the data created, and gets refreshed periodically too.
 
 Will definitely want to see how we can use more push based architecture here, as opposed to pull based. Maybe in the next version, along with using the right reactive components' framework too.
+
+//Further enhancements to be planned
